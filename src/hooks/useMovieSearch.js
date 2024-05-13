@@ -2,7 +2,7 @@
 
 import { useEffect, useState, useCallback } from 'react';
 import axios from 'axios';
-import { useMovieContext } from '../MovieContext';
+import { useMovieContext } from '../context/MovieContext';
 
 const API_KEY = 'cc31d08b0d4b5b3539a406e5af2aec1f';
 const BASE_URL = 'https://api.themoviedb.org/3';
@@ -16,9 +16,11 @@ const useMovieSearch = (endpointSlug) => {
     const [searchQuery, setSearchQuery] = useState('');
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState(null);
+    const [page, setPage] = useState(1); // Initialize page to 1
 
 
-    const fetchMovies = useCallback(async (query) => {
+
+    const fetchMovies = useCallback(async (query, pageNum) => {
         try {
             setLoading(true);
             setError(null);
@@ -27,7 +29,7 @@ const useMovieSearch = (endpointSlug) => {
                 params: {
                     api_key: API_KEY,
                     language: 'en-US',
-                    page: 1,
+                    page: pageNum,
                     query: query,
                 },
             });
@@ -53,9 +55,18 @@ const useMovieSearch = (endpointSlug) => {
         };
 
         fetchData();
-    }, [searchQuery, dispatch, fetchMovies]);
+    }, [searchQuery, page, dispatch, fetchMovies]);
 
-    return { loading, error, setSearchQuery };
+    const handleNextPage = () => {
+        setPage((prevPage) => prevPage + 1);
+    };
+
+    const handlePrevPage = () => {
+        setPage((prevPage) => Math.max(prevPage - 1, 1));
+    };
+
+    return { loading, error, setSearchQuery, handleNextPage, handlePrevPage };
+
 };
 
 export default useMovieSearch;
