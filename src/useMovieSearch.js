@@ -20,7 +20,7 @@ const useMovieSearch = () => {
                     api_key: 'cc31d08b0d4b5b3539a406e5af2aec1f',
                     language: 'en-US',
                     page: 1,
-                    include_adult: false,
+                    // include_adult: false,
                     query: query,
                 },
             });
