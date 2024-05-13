@@ -1,12 +1,13 @@
-import "./App.css";
-import MovieList from "./MovieList";
-import Search from "./Search";
-import Header from "./Header";
+import MovieList from "./components/MovieList";
+import Search from "./components/Search";
+import Header from "./components/Header";
 import { useState, useEffect } from "react";
 import { fetchMovies } from "./api";
+import useMovieSearch from "./hooks/useMovieSearch";
 import { useMovieContext } from "./MovieContext";
 function App() {
   const { state, dispatch } = useMovieContext();
+  const { loading, error } = useMovieSearch("top_rated");
 
   useEffect(() => {
     const fetchData = async () => {

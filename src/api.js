@@ -1,20 +1,8 @@
-// api.js
-
 import axios from 'axios';
 const API_KEY = 'cc31d08b0d4b5b3539a406e5af2aec1f';
 const BASE_URL = 'https://api.themoviedb.org/3';
 
 const fetchMovies = async (query) => {
-    const endPoint = [
-        {
-            slug: 'top_rated',
-            end_point: "/movie/top_rated"
-        },
-        {
-            slug: 'search',
-            end_point: "/search/movie"
-        },
-    ]
     try {
         const response = await axios.get(`${BASE_URL}/movie/top_rated`, {
             params: {

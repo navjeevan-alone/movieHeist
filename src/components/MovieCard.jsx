@@ -28,7 +28,7 @@ const Card = ({ movie }) => {
             <span className="text-gray-400 mr-3 inline-flex movies-center lg:ml-auto md:ml-0 ml-auto leading-none text-sm pr-3 py-1 border-r-2 border-gray-200">
               {movie.vote_count}
             </span>
-            <span className="text-gray-400 inline-flex movies-center leading-none text-sm">
+            <span className="text-gray-400 mr-3 inline-flex movies-center lg:ml-auto md:ml-0 ml-auto leading-none text-sm pr-3 py-1 border-r-2 border-gray-200">
               {movie.vote_average}
             </span>
           </div>

@@ -1,6 +1,6 @@
 // MovieContext.js
 
-import React, { createContext, useReducer, useContext } from "react";
+import { createContext, useReducer, useContext } from "react";
 
 // Initial state
 const initialState = {
@@ -10,27 +10,29 @@ const initialState = {
 };
 
 // Actions
-const SET_MOVIES = "SET_MOVIES";
-const SET_LOADING = "SET_LOADING";
-const SET_ERROR = "SET_ERROR";
+export const ACTIONS = {
+  SET_MOVIES: "SET_MOVIES",
+  SET_ERROR: "SET_ERROR",
+  SET_LOADING: "SET_LOADING",
+};
 
 // Reducer function
 const movieReducer = (state, action) => {
   switch (action.type) {
-    case SET_MOVIES:
+    case ACTIONS.SET_MOVIES:
       return {
         ...state,
         movies: action.payload,
         loading: false,
         error: null,
       };
-    case SET_LOADING:
+    case ACTIONS.SET_LOADING:
       return {
         ...state,
         loading: action.payload,
         error: null,
       };
-    case SET_ERROR:
+    case ACTIONS.SET_ERROR:
       return {
         ...state,
         loading: false,

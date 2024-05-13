@@ -2,7 +2,7 @@
 
 import { useEffect, useState, useCallback } from 'react';
 import axios from 'axios';
-import { useMovieContext } from './MovieContext';
+import { useMovieContext } from '../MovieContext';
 
 const API_KEY = 'cc31d08b0d4b5b3539a406e5af2aec1f';
 const BASE_URL = 'https://api.themoviedb.org/3';
