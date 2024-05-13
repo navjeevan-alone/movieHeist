@@ -1,10 +1,11 @@
 import MovieList from "./components/MovieList";
 import Search from "./components/Search";
 import Header from "./components/Header";
+import Pagination from "./components/Pagination";
 import { useState, useEffect } from "react";
 import { fetchMovies } from "./api";
 import useMovieSearch from "./hooks/useMovieSearch";
-import { useMovieContext } from "./MovieContext";
+import { useMovieContext } from "./context/MovieContext";
 function App() {
   const { state, dispatch } = useMovieContext();
   const { loading, error } = useMovieSearch("top_rated");
@@ -26,7 +27,7 @@ function App() {
   return (
     <>
       <Header></Header>
-      <Search />
+      <Search /> 
       <MovieList />
     </>
   );

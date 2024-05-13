@@ -1,7 +1,7 @@
 // MovieList.js
 
 import { useEffect, useState } from "react";
-import { useMovieContext } from "../MovieContext";
+import { useMovieContext } from "../context/MovieContext";
 import { fetchMovies } from "../api";
 import MovieCard from "./MovieCard";
 
