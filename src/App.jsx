@@ -1,7 +1,6 @@
 import MovieList from "./components/MovieList";
 import Search from "./components/Search";
-import Header from "./components/Header";
-import Pagination from "./components/Pagination";
+import Header from "./components/Header"; 
 import { useState, useEffect } from "react";
 import { fetchMovies } from "./api";
 import useMovieSearch from "./hooks/useMovieSearch";

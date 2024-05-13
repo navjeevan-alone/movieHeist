@@ -4,7 +4,7 @@
 MovieHeist is a React-based application that allows users to search for and explore movies. Users can search for movies by title, view details about each movie, and navigate through paginated results.
 
 ## Demo:
-[Demo Link](https://example.com)
+[Demo Link](https://movie-heist.vercel.app/)
 
 ## Features:
 - Search for movies by title
