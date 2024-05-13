@@ -1,38 +1,46 @@
 // useMovieSearch.js
 
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useCallback } from 'react';
 import axios from 'axios';
 import { useMovieContext } from './MovieContext';
 
-const useMovieSearch = () => {
+const API_KEY = 'cc31d08b0d4b5b3539a406e5af2aec1f';
+const BASE_URL = 'https://api.themoviedb.org/3';
+
+const endpoints = {
+    top_rated: '/movie/top_rated',
+    search: '/search/movie'
+};
+const useMovieSearch = (endpointSlug) => {
     const { dispatch } = useMovieContext();
     const [searchQuery, setSearchQuery] = useState('');
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState(null);
 
-    const fetchMovies = async (query) => {
+
+    const fetchMovies = useCallback(async (query) => {
         try {
             setLoading(true);
             setError(null);
 
-            const response = await axios.get('https://api.themoviedb.org/3/search/movie', {
+            const response = await axios.get(`${BASE_URL}${endpoints[endpointSlug]}`, {
                 params: {
-                    api_key: 'cc31d08b0d4b5b3539a406e5af2aec1f',
+                    api_key: API_KEY,
                     language: 'en-US',
                     page: 1,
-                    // include_adult: false,
                     query: query,
                 },
             });
 
             setLoading(false);
+            console.log("from hook ", response.data.results)
             return response.data.results;
         } catch (error) {
             setLoading(false);
             setError(error.message);
             return [];
         }
-    };
+    }, [endpointSlug]);
 
     useEffect(() => {
         const fetchData = async () => {
@@ -45,7 +53,7 @@ const useMovieSearch = () => {
         };
 
         fetchData();
-    }, [searchQuery, dispatch]);
+    }, [searchQuery, dispatch, fetchMovies]);
 
     return { loading, error, setSearchQuery };
 };

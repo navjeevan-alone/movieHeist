@@ -1,11 +1,11 @@
 // Search.js
 
-import React from "react";
+import { useState } from "react";
 import useMovieSearch from "./useMovieSearch";
 
 const Search = () => {
-  const { loading, error, setSearchQuery } = useMovieSearch();
-  const [searchText, setSearchText] = React.useState("");
+  const { loading, error, setSearchQuery } = useMovieSearch("search");
+  const [searchText, setSearchText] = useState("");
 
   const handleSearchInputChange = (event) => {
     setSearchText(event.target.value);
@@ -14,6 +14,7 @@ const Search = () => {
   const handleSearchSubmit = (event) => {
     event.preventDefault();
     setSearchQuery(searchText);
+    
   };
 
   return (
