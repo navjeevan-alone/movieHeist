@@ -3,21 +3,21 @@ import { Eye, Star } from "lucide-react";
 
 const Card = ({ movie }) => {
   return (
-    <div className="p-4 md:w-1/4" key={movie.id}>
+    <div
+      className="p-4 md:w-1/4 relative inset-0 bg-black opacity-100"
+      key={movie.id}>
       <div className="h-full border-2 border-gray-200 border-opacity-60 rounded-lg overflow-hidden">
         <img
-          className="lg:h-48 md:h-36  object-cover object-center"
+          className="lg:h-48 md:h-36 object-cover object-center"
           src={`https://image.tmdb.org/t/p/w500/${movie.backdrop_path}`}
-          alt="blog"
+          alt="movie backdrop"
         />
-        <div className="p-6 pb-2">
-          {/* <h2 className="tracking-widest text-xs title-font font-medium text-gray-400 mb-1">
-                        CATEGORY
-                      </h2> */}
-          <h1 className="title-font text-xl font-medium text-gray-900 mb-3">
+       
+        <div className="p-6 pb-2 relative z-10">
+          <h1 className="title-font text-xl font-medium text-white mb-3">
             {movie.title}
           </h1>
-          <p className="leading-relaxed mb-3">
+          <p className="leading-relaxed text-white mb-3">
             {movie.overview.slice(0, 100)}...
           </p>
           <div className="flex movies-center flex-wrap position-bottom">
