@@ -1,3 +1,18 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+/* .bg-gradient-primary {
+  background-image: linear-gradient(
+    -225deg,
+    #a445b2 0%,
+    #d41872 52%,
+    #ff0066 100%
+  );
+  background: #e52d27;  
+  background: -webkit-linear-gradient(
+    to right,
+    #b31217,
+    #e52d27
+  );  
+  background: linear-gradient(to right, #b31217, #e52d27);
+} */

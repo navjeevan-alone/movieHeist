@@ -1,11 +1,12 @@
 import MovieList from "./components/MovieList";
 import Search from "./components/Search";
-import Header from "./components/Header"; 
-import GenresList from "./components/GenresList"; 
+import Header from "./components/Header";
+import GenresList from "./components/GenresList";
 import { useState, useEffect } from "react";
 import { fetchMovies } from "./api";
 import useMovieSearch from "./hooks/useMovieSearch";
 import { useMovieContext } from "./context/MovieContext";
+import MovieDetails from "./components/MovieDetails";
 function App() {
   const { state, dispatch } = useMovieContext();
   const { loading, error } = useMovieSearch("genre/movie/list");
@@ -25,9 +26,9 @@ function App() {
   }, [dispatch]);
 
   return (
-    <div className="bg-gray-900">
+    <div className="bg-gray-900 min-h-screen">
       <Header></Header>
-      <Search /> 
+      <Search />
       <GenresList></GenresList>
       <MovieList />
     </div>

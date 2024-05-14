@@ -17,7 +17,7 @@ const MovieList = () => {
         ) : state.error ? (
           <p>Error: {state.error}</p>
         ) : (
-          <div className="flex flex-wrap gap-4 m-4">
+          <div className="flex flex-wrap gap-4 m-4 justify-center">
             {state.movies.map((movie) => (
               <MovieCardPoster key={movie.id} movie={movie} />
             ))}
