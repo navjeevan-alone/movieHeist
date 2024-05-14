@@ -1,6 +1,5 @@
 // MovieCard.js
 import { Eye, Star } from "lucide-react";
-import React from "react";
 
 const Card = ({ movie }) => {
   return (
@@ -21,7 +20,7 @@ const Card = ({ movie }) => {
           <p className="leading-relaxed mb-3">
             {movie.overview.slice(0, 100)}...
           </p>
-          <div className="flex movies-center flex-wrap ">
+          <div className="flex movies-center flex-wrap position-bottom">
             <span className="text-red-700 font-bold inline-flex movies-center md:mb-2 lg:mb-0">
               {movie.release_date.slice(0, 4)}
             </span>

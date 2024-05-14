@@ -4,6 +4,7 @@ import { createContext, useReducer, useContext } from "react";
 // Initial state
 const initialState = {
   movies: [],
+  genres:[],
   loading: false,
   error: null,
 };
@@ -13,6 +14,7 @@ export const ACTIONS = {
   SET_MOVIES: "SET_MOVIES",
   SET_ERROR: "SET_ERROR",
   SET_LOADING: "SET_LOADING",
+  SET_GENRE:"SET_GENRE"
 };
 
 // Reducer function
@@ -22,6 +24,13 @@ const movieReducer = (state, action) => {
       return {
         ...state,
         movies: action.payload,
+        loading: false,
+        error: null,
+      };
+    case ACTIONS.SET_GENRE:
+      return {
+        ...state,
+        genres: action.payload,
         loading: false,
         error: null,
       };

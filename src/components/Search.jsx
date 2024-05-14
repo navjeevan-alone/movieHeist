@@ -1,12 +1,9 @@
-// Search.js
-
 import { useState } from "react";
 import useMovieSearch from "../hooks/useMovieSearch";
 import { useEffect } from "react";
 
 const Search = () => {
-  const { loading, error, setSearchQuery} =
-    useMovieSearch("search");
+  const { loading, error, setSearchQuery } = useMovieSearch("search");
   const [searchText, setSearchText] = useState("");
 
   const handleSearchInputChange = (event) => {
@@ -40,7 +37,6 @@ const Search = () => {
       </form>
 
       {error && <p className="text-red-700">{error}</p>}
-      
     </>
   );
 };
