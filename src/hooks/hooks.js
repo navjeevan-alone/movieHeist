@@ -62,6 +62,7 @@ const useMovieSearch = (endpointSlug) => {
     return { loading, error, setSearchQuery };
 
 };
+export default useMovieSearch;
 
 export const useGenreFetch = () => {
     const { dispatch } = useMovieContext();
@@ -116,7 +117,7 @@ export const useFilteredGenre = (initialGenre) => {
 
                     setFilteredMovies(response.data.results);
                     setLoading(false);
-                    dispatch({ type: ACTIONS.SET_MOVIES, payload: filteredMovies })
+                    filteredMovies.length !== 0 && dispatch({ type: ACTIONS.SET_MOVIES, payload: filteredMovies })
 
                     console.log(activeGenre.name, "genre movies", filteredMovies);
                 } catch (error) {
@@ -138,5 +139,35 @@ export const useFilteredGenre = (initialGenre) => {
 
     return { activeGenre, filteredMovies, loading, error, handleGenreChange };
 };
+export const useTrendingMovies = () => {
+    const [trendingMovies, setTrendingMovies] = useState([]);
+    const [loading, setLoading] = useState(false);
+    const [error, setError] = useState(null);
 
-export default useMovieSearch;
+    useEffect(() => {
+        const fetchTrendingMovies = async () => {
+            try {
+                setLoading(true);
+                setError(null);
+
+                const response = await axios.get(`${BASE_URL}/trending/movie/week`, {
+                    params: {
+                        api_key: API_KEY,
+                    },
+                });
+
+                setTrendingMovies(response.data.results);
+                setLoading(false);
+            } catch (error) {
+                setLoading(false);
+                setError(error.message);
+            }
+        };
+
+        fetchTrendingMovies();
+    }, []);
+
+    return { trendingMovies, loading, error };
+};
+
+
