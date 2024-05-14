@@ -4,15 +4,15 @@ import { Eye, Star } from "lucide-react";
 const Card = ({ movie }) => {
   return (
     <div
-      className="p-4 md:w-1/4 relative inset-0 bg-black opacity-100"
+      className="p-4 md:w-1/4 relative inset-0 bg-black opacity-100 "
       key={movie.id}>
-      <div className="h-full border-2 border-gray-200 border-opacity-60 rounded-lg overflow-hidden">
+      <div className="h-full border-2 border-gray-200 border-opacity-60 rounded-lg overflow-hidden ">
         <img
           className="lg:h-48 md:h-36 object-cover object-center"
           src={`https://image.tmdb.org/t/p/w500/${movie.backdrop_path}`}
           alt="movie backdrop"
         />
-       
+
         <div className="p-6 pb-2 relative z-10">
           <h1 className="title-font text-xl font-medium text-white mb-3">
             {movie.title}

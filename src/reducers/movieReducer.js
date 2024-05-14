@@ -2,6 +2,7 @@
 export const initialState = {
     movies: [],
     genres: [],
+    activeGenre: "",
     loading: false,
     error: null,
 };
@@ -11,7 +12,7 @@ export const ACTIONS = {
     SET_MOVIES: "SET_MOVIES",
     SET_ERROR: "SET_ERROR",
     SET_LOADING: "SET_LOADING",
-    SET_GENRE: "SET_GENRE"
+    GET_ALL_GENRE: "GET_ALL_GENRE"
 };
 
 // Reducer function
@@ -24,7 +25,7 @@ export const movieReducer = (state, action) => {
                 loading: false,
                 error: null,
             };
-        case ACTIONS.SET_GENRE:
+        case ACTIONS.GET_ALL_GENRE:
             return {
                 ...state,
                 genres: action.payload,
