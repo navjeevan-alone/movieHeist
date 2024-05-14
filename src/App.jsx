@@ -4,7 +4,7 @@ import Header from "./components/Header";
 import GenresList from "./components/GenresList";
 import { useState, useEffect } from "react";
 import { fetchMovies } from "./api";
-import useMovieSearch from "./hooks/useMovieSearch";
+import useMovieSearch from "./hooks/hooks";
 import { useMovieContext } from "./context/MovieContext";
 import MovieDetails from "./components/MovieDetails";
 function App() {

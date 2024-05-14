@@ -1,5 +1,5 @@
 import { useState } from "react";
-import useMovieSearch from "../hooks/useMovieSearch";
+import useMovieSearch from "../hooks/hooks";
 import { useEffect } from "react";
 
 const Search = () => {

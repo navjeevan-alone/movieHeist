@@ -2,7 +2,8 @@ import { useState } from "react";
 import useMovieSearch, {
   endpoints,
   useGenreFetch,
-} from "../hooks/useMovieSearch";
+  useFilteredGenre,
+} from "../hooks/hooks";
 import { useEffect } from "react";
 import { useMovieContext } from "../context/MovieContext";
 
@@ -13,6 +14,14 @@ const Search = () => {
     error: genreError,
     fetchGenres,
   } = useGenreFetch();
+
+  const {
+    activeGenre,
+    filteredMovies,
+    loading: movieLoading,
+    error: movieError,
+    handleGenreChange,
+  } = useFilteredGenre(null);
 
   // Fetch genres when the component mounts
   useEffect(() => {
@@ -25,10 +34,15 @@ const Search = () => {
         {genreLoading && <div>Loading genres...</div>}
         {genreError && <div>Error fetching genres: {genreError}</div>}
 
+         
+
         {genres.map((genre) => (
           <button
-            className="px-4 py-2 m-2 text-[15px] bg-slate-800 text-white font-semibold rounded-3xl"
-            key={genre.id}>
+            key={genre.id}
+            className={`px-4 py-2 m-2 text-[15px] bg-slate-800 text-white font-semibold rounded-3xl ${
+              activeGenre && activeGenre.id === genre.id ? "bg-red-600" : ""
+            }`}
+            onClick={() => handleGenreChange(genre)}>
             {genre.name}
           </button>
         ))}

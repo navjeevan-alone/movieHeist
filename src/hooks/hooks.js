@@ -64,6 +64,7 @@ const useMovieSearch = (endpointSlug) => {
 };
 
 export const useGenreFetch = () => {
+    const { dispatch } = useMovieContext();
     const [genres, setGenres] = useState([]);
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState(null);
@@ -82,6 +83,7 @@ export const useGenreFetch = () => {
 
             setGenres(response.data.genres);
             setLoading(false);
+            dispatch({ type: ACTIONS.GET_ALL_GENRE, payload: genres })
         } catch (error) {
             setLoading(false);
             setError(error.message);
@@ -89,6 +91,52 @@ export const useGenreFetch = () => {
     }, []);
 
     return { genres, loading, error, fetchGenres };
+};
+
+export const useFilteredGenre = (initialGenre) => {
+    const { dispatch } = useMovieContext();
+    const [activeGenre, setActiveGenre] = useState(initialGenre);
+    const [filteredMovies, setFilteredMovies] = useState([]);
+    const [loading, setLoading] = useState(false);
+    const [error, setError] = useState(null);
+
+    useEffect(() => {
+        const fetchMoviesByGenre = async () => {
+            if (activeGenre) {
+                try {
+                    setLoading(true);
+                    setError(null);
+
+                    const response = await axios.get(`${BASE_URL}/discover/movie`, {
+                        params: {
+                            api_key: API_KEY,
+                            with_genres: activeGenre.id,
+                        },
+                    });
+
+                    setFilteredMovies(response.data.results);
+                    setLoading(false);
+                    dispatch({ type: ACTIONS.SET_MOVIES, payload: filteredMovies })
+
+                    console.log(activeGenre.name, "genre movies", filteredMovies);
+                } catch (error) {
+                    setLoading(false);
+                    setError(error.message);
+                }
+            } else {
+                setFilteredMovies([]);
+            }
+        };
+
+        fetchMoviesByGenre();
+    }, [activeGenre]);
+
+    const handleGenreChange = (genre) => {
+        setActiveGenre(genre);
+        console.log(genre)
+    };
+
+    return { activeGenre, filteredMovies, loading, error, handleGenreChange };
 };
 
 export default useMovieSearch;
