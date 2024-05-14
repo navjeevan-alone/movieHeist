@@ -40,7 +40,7 @@ const Search = () => {
           <button
             key={genre.id}
             className={`px-4 py-2 m-2 text-[15px] bg-slate-800 text-white font-semibold rounded-3xl ${
-              activeGenre && activeGenre.id === genre.id ? "bg-red-600" : ""
+              activeGenre && activeGenre.id === genre.id ? "bg-red-800" : ""
             }`}
             onClick={() => handleGenreChange(genre)}>
             {genre.name}
