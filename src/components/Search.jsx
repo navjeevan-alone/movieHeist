@@ -25,8 +25,9 @@ const Search = () => {
           value={searchText}
           onChange={handleSearchInputChange}
           placeholder="Bahubali, RRR, Kantara..."
-          className="w-full  bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:bg-transparent focus:ring-2 focus:ring-red-200 focus:border-red-700 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
+          className="w-full bg-gray-900 bg-opacity-50 rounded border border-gray-600 focus:bg-transparent focus:ring-2 focus:ring-red-200 focus:border-red-700 text-base outline-none text-gray-200 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
         />
+
         <button
           onClick={handleSearchSubmit}
           disabled={loading}

@@ -20,7 +20,6 @@ export default function Header() {
         </button> */}
         </div>
       </header>
-      <hr className="mb-2 " />
     </>
   );
 }

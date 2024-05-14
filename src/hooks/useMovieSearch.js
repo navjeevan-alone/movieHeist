@@ -1,10 +1,10 @@
 // useMovieSearch.js
 
 import { useEffect, useState, useCallback } from 'react';
-import axios from 'axios';
+import axios from 'axios'; 
 import { ACTIONS, useMovieContext } from '../context/MovieContext';
 
-const API_KEY = 'cc31d08b0d4b5b3539a406e5af2aec1f';
+const API_KEY = import.meta.env.TMDB_MOVIES_API_KEY;
 const BASE_URL = 'https://api.themoviedb.org/3';
 
 export const endpoints = {
