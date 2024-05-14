@@ -32,7 +32,7 @@ const useMovieSearch = (endpointSlug) => {
             });
 
             setLoading(false);
-            console.log("from hook ", response.data.results)
+            // console.log("from hook ", response.data.results)
             return response.data.results;
         } catch (error) {
             setLoading(false);
@@ -44,19 +44,13 @@ const useMovieSearch = (endpointSlug) => {
 
     useEffect(() => {
         const fetchData = async () => {
-            if (endpointSlug === endpoints.genres) {
-                const genre = await fetchMovies();
-                dispatch({ type: ACTIONS.SET_GENRE, payload: genre });
-                console.log(genre);
-            }
-            else {
-                if (searchQuery.trim() !== '') {
-                    const movies = await fetchMovies(searchQuery.trim());
-                    dispatch({ type: ACTIONS.SET_MOVIES, payload: movies });
-                } else {
-                    dispatch({ type: ACTIONS.SET_MOVIES, payload: [] });
-                }
 
+
+            if (searchQuery.trim() !== '') {
+                const movies = await fetchMovies(searchQuery.trim());
+                dispatch({ type: ACTIONS.SET_MOVIES, payload: movies });
+            } else {
+                dispatch({ type: ACTIONS.SET_MOVIES, payload: [] });
             }
 
         };
@@ -67,6 +61,34 @@ const useMovieSearch = (endpointSlug) => {
 
     return { loading, error, setSearchQuery };
 
+};
+
+export const useGenreFetch = () => {
+    const [genres, setGenres] = useState([]);
+    const [loading, setLoading] = useState(false);
+    const [error, setError] = useState(null);
+
+    const fetchGenres = useCallback(async () => {
+        try {
+            setLoading(true);
+            setError(null);
+
+            const response = await axios.get(`${BASE_URL}${endpoints.genres}`, {
+                params: {
+                    api_key: API_KEY,
+                    language: 'en-US',
+                },
+            });
+
+            setGenres(response.data.genres);
+            setLoading(false);
+        } catch (error) {
+            setLoading(false);
+            setError(error.message);
+        }
+    }, []);
+
+    return { genres, loading, error, fetchGenres };
 };
 
 export default useMovieSearch;
