@@ -171,3 +171,30 @@ export const useTrendingMovies = () => {
 };
 
 
+export const useMovieDetails = (movieId) => {
+    const [movie, setMovie] = useState(null);
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState(null);
+
+    useEffect(() => {
+        const fetchMovieDetails = async () => {
+            try {
+                const response = await axios.get(`https://api.themoviedb.org/3/movie/278`, {
+                    params: {
+                        api_key: API_KEY,
+                        language: 'en-US',
+                    },
+                });
+                setMovie(response.data);
+                setLoading(false);
+            } catch (err) {
+                setError(err.message);
+                setLoading(false);
+            }
+        };
+
+        fetchMovieDetails();
+    }, [movieId]);
+
+    return { movie, loading, error };
+};

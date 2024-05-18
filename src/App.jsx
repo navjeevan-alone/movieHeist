@@ -9,6 +9,8 @@ import { useMovieContext } from "./context/MovieContext";
 import MovieDetails from "./components/MovieDetails";
 import ToggleSidebar from "./components/ToggleSidebar";
 import Footer from "./components/Footer";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+
 function App() {
   const { state, dispatch } = useMovieContext();
   const { loading, error } = useMovieSearch("genre/movie/list");
@@ -26,18 +28,27 @@ function App() {
 
     fetchData();
   }, [dispatch]);
-
+  const id = "";
   return (
-    <div className="bg-gray-900 min-h-screen">
-      <Header />
-
-      <Search />
-      <ToggleSidebar />
-      <GenresList></GenresList>
-      <MovieList />
+    <Router>
+      <div className="bg-gray-900 min-h-screen">
+        <Routes>
+          <Route
+            path="/"
+            element={
+              <div>
+                <Header />
+                <Search />
+                <GenresList />
+                <MovieList />
+              </div>
+            }></Route>
+          {/* <ToggleSidebar /> */}
+          <Route path="/movie/:id" element={<MovieDetails id={""} />} />
+        </Routes>
+      </div>
       <Footer />
-      <MovieDetails />
-    </div>
+    </Router>
   );
 }
 
