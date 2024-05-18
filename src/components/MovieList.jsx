@@ -5,6 +5,7 @@ import { useMovieContext } from "../context/MovieContext";
 import { fetchMovies } from "../api";
 import MovieCard from "./MovieCard";
 import MovieCardPoster from "./MovieCardPoster";
+import MovieDetails from "./MovieDetails";
 
 const MovieList = () => {
   const { state, dispatch } = useMovieContext();
@@ -18,6 +19,8 @@ const MovieList = () => {
           <p>Error: {state.error}</p>
         ) : (
           <div className="flex flex-wrap gap-4 m-4 justify-center">
+            {/* <MovieDetails movie={state.movies[0]} /> */}
+            {/* {console.log(state.movies[0])} */}
             {state.movies.map((movie) => (
               <MovieCardPoster key={movie.id} movie={movie} />
             ))}

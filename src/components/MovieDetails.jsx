@@ -1,12 +1,12 @@
-
 const MovieDetails = ({ movie }) => {
+  console.log(movie);
   return (
     <div className="bg-red-700 text-white">
       {/* Full-size banner */}
       <div className="h-80 bg-gray-900 relative">
         <img
           className="absolute inset-0 w-full h-full object-cover"
-          src={`https://image.tmdb.org/t/p/original/${movie.backdrop_path}`}
+          src={`https://image.tmdb.org/t/p/w500/${movie.backdrop_path}`}
           alt="movie backdrop"
         />
       </div>

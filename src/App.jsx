@@ -7,6 +7,8 @@ import { fetchMovies } from "./api";
 import useMovieSearch from "./hooks/hooks";
 import { useMovieContext } from "./context/MovieContext";
 import MovieDetails from "./components/MovieDetails";
+import ToggleSidebar from "./components/ToggleSidebar";
+import Footer from "./components/Footer";
 function App() {
   const { state, dispatch } = useMovieContext();
   const { loading, error } = useMovieSearch("genre/movie/list");
@@ -27,10 +29,12 @@ function App() {
 
   return (
     <div className="bg-gray-900 min-h-screen">
-      <Header></Header>
+      <Header />
+      <ToggleSidebar />
       <Search />
       <GenresList></GenresList>
       <MovieList />
+      <Footer />
     </div>
   );
 }
