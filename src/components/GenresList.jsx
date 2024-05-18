@@ -33,8 +33,7 @@ const Search = () => {
       <div className="container flex flex-wrap justify-center my-4">
         {genreLoading && <div>Loading genres...</div>}
         {genreError && <div>Error fetching genres: {genreError}</div>}
-
-         
+        {console.log(JSON.stringify(genres))}
 
         {genres.map((genre) => (
           <button

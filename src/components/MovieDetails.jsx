@@ -1,4 +1,28 @@
 import { PlayCircle } from "lucide-react";
+import { useMovieContext } from "../context/MovieContext";
+import { useGenreFetch } from "../hooks/hooks";
+const genres = [
+  { id: 28, name: "Action" },
+  { id: 12, name: "Adventure" },
+  { id: 16, name: "Animation" },
+  { id: 35, name: "Comedy" },
+  { id: 80, name: "Crime" },
+  { id: 99, name: "Documentary" },
+  { id: 18, name: "Drama" },
+  { id: 10751, name: "Family" },
+  { id: 14, name: "Fantasy" },
+  { id: 36, name: "History" },
+  { id: 27, name: "Horror" },
+  { id: 10402, name: "Music" },
+  { id: 9648, name: "Mystery" },
+  { id: 10749, name: "Romance" },
+  { id: 878, name: "Science Fiction" },
+  { id: 10770, name: "TV Movie" },
+  { id: 53, name: "Thriller" },
+  { id: 10752, name: "War" },
+  { id: 37, name: "Western" },
+];
+
 const movie = {
   adult: false,
   backdrop_path: "/kXfqcdQKsToO0OUXHcrrNCHDBzO.jpg",
@@ -18,6 +42,18 @@ const movie = {
 };
 
 const MovieDetails = () => {
+  // const { state } = useMovieContext();
+
+  const getGenreNames = (genreIds, genres) => {
+    let genreNames = genreIds
+      .map((id) => {
+        const genre = genres.find((genre) => genre.id === id);
+        return genre ? genre.name : null;
+      })
+      .filter((name) => name !== null)
+      .join(" • ");
+    return genreNames;
+  };
   return (
     <div
       className="text-white h-screen relative"
@@ -28,18 +64,18 @@ const MovieDetails = () => {
         backgroundRepeat: "no-repeat",
       }}>
       {/* Gradient Overlay */}
-      <div className="absolute top-0 left-0 h-full w-full bg-gradient-to-t from-black via-85% via-transparent to-transparent"></div>
+      <div className="absolute top-0 left-0 h-full w-full bg-gradient-to-t from-black via-95% via-transparent to-transparent"></div>
 
       {/* Details Section */}
       <div className="absolute bottom-0 left-0 w-[50%] p-8 bg-opacity-50">
         <div className="mb-4">
-          {/* Genres */}
-          <p className="text-sm">
-            {movie.genre_ids.map((genre) => genre).join(" . ")}
-          </p>
           {/* Movie name */}
-          <h1 className="text-3xl font-bold">{movie.title}</h1>
+          <h1 className="text-4xl font-bold">{movie.title}</h1>
         </div>
+        {/* Genres */}
+        <p className="text-sm font-bold">
+          {getGenreNames(movie.genre_ids, genres)}
+        </p>
 
         {/* Overview */}
         <p className="mb-8">{movie.overview}</p>

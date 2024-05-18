@@ -30,12 +30,12 @@ function App() {
   return (
     <div className="bg-gray-900 min-h-screen">
       <Header />
-      {/* 
+
       <Search />
       <ToggleSidebar />
       <GenresList></GenresList>
       <MovieList />
-      <Footer /> */}
+      <Footer />
       <MovieDetails />
     </div>
   );
