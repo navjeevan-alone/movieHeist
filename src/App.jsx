@@ -28,17 +28,17 @@ function App() {
 
     fetchData();
   }, [dispatch]);
-  const id = "";
+  
   return (
     <Router>
       <div className="bg-gray-900 min-h-screen">
+        <Header />
+        <Search />
         <Routes>
           <Route
             path="/"
             element={
               <div>
-                <Header />
-                <Search />
                 <GenresList />
                 <MovieList />
               </div>

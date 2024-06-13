@@ -179,7 +179,7 @@ export const useMovieDetails = (movieId) => {
     useEffect(() => {
         const fetchMovieDetails = async () => {
             try {
-                const response = await axios.get(`https://api.themoviedb.org/3/movie/278`, {
+                const response = await axios.get(`${BASE_URL}/movie/${movieId}`, {
                     params: {
                         api_key: API_KEY,
                         language: 'en-US',
